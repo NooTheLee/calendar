@@ -1,0 +1,434 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#slidewrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .slides {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background-color: rgb(192, 190, 199);
+        transition: 1s;
+        ul {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            .bg {
+                position: absolute;
+                z-index: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.5;
+                transition: 1s;
+                top: 0;
+                left: 0;
+                perspective: 800px;
+            }
+            li {
+                list-style: none;
+                width: 100%;
+                height: 100%;
+                // margin: 3% 10%;
+                opacity: 0;
+                position: absolute;
+                z-index: 5;
+                top: 0;
+                left: 0;
+                background-size: cover;
+                img {
+                    position: absolute;
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: cover;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+                }
+            }
+            //Swipe
+            li.active_swipe {
+                animation: acti_swipe 1.75s forwards;
+                z-index: 6;
+                box-shadow: rgba(50, 50, 93, 0.5) 0px 30px 60px -12px, rgba(0, 0, 0, 0.5) 0px 18px 36px -18px;
+            }
+            li.return_swipe {
+                animation: retu_swipe 1.75s forwards;
+            }
+            li.hienra_swipe {
+                animation: hien_swipe 1.75s forwards;
+            }
+            li.bienmat_swipe {
+                animation: bien_swipe 1.75s forwards;
+                z-index: 6;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+            }
+            // End swipe
+            //----------------------------
+            //Scale
+            li.active_scale {
+                animation: acti_scale 1.75s forwards;
+            }
+            li.return_scale {
+                animation: retu_scale 1.75s forwards;
+            }
+            li.hienra_scale {
+                animation: hien_scale 1.75s forwards;
+            }
+            li.bienmat_scale {
+                animation: bien_scale 1.75s forwards;
+            }
+            //End Scale
+            //----------------------------
+            //Press away
+            li.active_press_away {
+                animation: acti_press_away 1.75s forwards;
+            }
+            li.return_press_away {
+                animation: retu_press_away 1.5s forwards;
+            }
+            li.hienra_press_away {
+                animation: hien_press_away 1.75s forwards;
+            }
+            li.bienmat_press_away {
+                animation: bien_press_away 1.5s forwards;
+            }
+            //End Press away
+            //----------------------------
+            //Push reveal
+            li.active_push_reveal {
+                animation: acti_push_reveal 1.75s forwards;
+                z-index: 6;
+            }
+            li.return_push_reveal {
+                animation: retu_push_reveal 1.75s forwards;
+            }
+            li.hienra_push_reveal {
+                animation: hien_push_reveal 1.75s forwards;
+            }
+            li.bienmat_push_reveal {
+                animation: bien_push_reveal 1.75s forwards;
+            }
+            //End Press away
+            //----------------------------
+            //Push reveal
+            li.active_let_me_in {
+                animation: acti_let_me_in 1.75s forwards;
+                z-index: 6;
+            }
+            li.return_let_me_in {
+                animation: retu_let_me_in 1.75s forwards;
+                //transition-duration: 1200px;
+                transform-origin: 0 0;
+            }
+            li.hienra_let_me_in {
+                animation: hien_let_me_in 1.75s forwards;
+            }
+            li.bienmat_let_me_in {
+                animation: bien_let_me_in 1.75s forwards;
+            }
+            //End Press away
+        }
+    }
+    .btn {
+        // width: 100%;
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 10px;
+        left: 49.4%;
+        transform: translateX(-50%);
+        z-index: 9;
+        background: none;
+        .phai,
+        .trai {
+            i {
+                color: rgb(255, 255, 255);
+                font-size: 70px;
+                margin-left: 20px;
+                transition: 0.4s;
+            }
+            i:hover {
+                color: rgb(59, 58, 66);
+            }
+        }
+    }
+    .stt {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 3%;
+        z-index: 6;
+        ul {
+            li {
+                display: inline-block;
+                border: 1px solid rgb(224, 220, 215);
+                text-indent: -9999px;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                transition: 0.4s;
+                margin: 8px 10px 3px 10px;
+                background-color: #ffffff;
+                p {
+                    width: 11px;
+                    height: 11px;
+                    border-radius: 50%;
+                    margin: 0.85px 0 0 0.75px;
+                    transition: 0.4s;
+                }
+            }
+            li p.a.active {
+                position: absolute;
+                z-index: 10;
+                background-color: rgb(59, 58, 66);
+            }
+        }
+    }
+    .option {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 7;
+        select {
+            border: 0.5px solid rgb(150, 130, 104);
+            background: none;
+            padding: 5px 15px;
+            border-radius: 3px;
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            color: #ffffff;
+            option {
+                font-family: 'Times New Roman', Times, serif;
+                color: black;
+            }
+        }
+    }
+}
+
+@keyframes acti_swipe {
+    from {
+        height: 0;
+        opacity: 1;
+    }
+    to {
+        height: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes retu_swipe {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes hien_swipe {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bien_swipe {
+    from {
+        height: 100%;
+        opacity: 1;
+    }
+    to {
+        height: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes acti_scale {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes retu_scale {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(1.75);
+        opacity: 0;
+    }
+}
+
+@keyframes hien_scale {
+    from {
+        transform: scale(1.75);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bien_scale {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes acti_press_away {
+    from {
+        transform: translateX(-100%) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes retu_press_away {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes hien_press_away {
+    from {
+        transform: translateX(100%) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bien_press_away {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes acti_push_reveal {
+    from {
+        transform: translateY(-100%) scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes retu_push_reveal {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%) scale(0.85);
+        opacity: 0;
+    }
+}
+
+@keyframes hien_push_reveal {
+    from {
+        transform: translateY(100%) scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bien_push_reveal {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%) scale(0.85);
+        opacity: 0;
+    }
+}
+
+@keyframes acti_let_me_in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes retu_let_me_in {
+    from {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: rotateY(-35deg);
+        opacity: 0;
+    }
+}
+
+@keyframes hien_let_me_in {
+    from {
+        transform: translateY(100%) scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bien_let_me_in {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%) scale(0.85);
+        opacity: 0;
+    }
+}
